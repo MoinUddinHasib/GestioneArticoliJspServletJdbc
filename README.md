@@ -3,7 +3,7 @@
 #DataBase (MySQL)
 ## Tabelle
 
-
+-----------------------------------------------------
 Articolo:
 
 ID [INT AI PK]
@@ -15,14 +15,14 @@ DESCRIZIONE [VARCHAR(45)]
 PREZZO [INT]
 
 CATEGORIA_FK [INT]
-
+-----------------------------------------------------
 
 Categoria:
 
 ID_CATEGORIA [INT AI PK]
 
 DESCRIZIONE [VARCHAR(45)]
-
+-----------------------------------------------------
 
 User:
 
