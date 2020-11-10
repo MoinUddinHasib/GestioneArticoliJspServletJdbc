@@ -2,8 +2,8 @@
 
 #DataBase (MySQL)
 ## Tabelle
-
 -----------------------------------------------------
+
 Articolo:
 
 ID [INT AI PK]
