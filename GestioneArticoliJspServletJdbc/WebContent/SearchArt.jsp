@@ -45,8 +45,7 @@
 			</div>
 			<div class='card-body'>
 
-				<form method="post" action="SearchArticoloServlet"
-					novalidate="novalidate">
+				<form method="post" action="SearchArticoloServlet">
 					
 					<div class="form-row">
 					

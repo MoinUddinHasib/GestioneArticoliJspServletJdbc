@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
@@ -107,7 +108,9 @@ public class CategoriaDAOImpl extends AbstractMySQLDAO implements CategoriaDAO {
         try (PreparedStatement ps = connection.prepareStatement(query)){
         	ps.setLong(1, input.getId());
         	 return ps.executeUpdate();
-        } catch (SQLException e) {
+        } catch (SQLIntegrityConstraintViolationException e) {
+			throw e;
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
         return -1;

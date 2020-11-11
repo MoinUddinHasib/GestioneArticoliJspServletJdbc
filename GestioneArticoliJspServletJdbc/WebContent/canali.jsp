@@ -29,6 +29,12 @@
 		    <span aria-hidden="true">&times;</span>
 		  </button>
 		</div>
+		<div class="alert alert-danger alert-dismissible fade show ${errorMessage==null?'d-none': ''}" role="alert">
+		  ${errorMessage}
+		  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+		    <span aria-hidden="true">&times;</span>
+		  </button>
+		</div>
 		<div class="alert alert-info alert-dismissible fade show d-none" role="alert">
 		  Aggiungere d-none nelle class per non far apparire
 		  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -57,7 +63,8 @@
 		                    </tr>
 		                </thead>
 		                <tbody>
-		                		
+		                	<c:set var ="cond" value="${requestScope.filtro}"/>
+		                	<c:set var ="cri" value="${requestScope.criterio}"/>
 		                	<c:forEach items="${requestScope.listaCategorie}" var= 'c'>							
 		                    <tr >
 		                        <td>${c.getId()}</td>
@@ -67,12 +74,13 @@
 									<c:if test="${ sessionScope.ruolo != 'GUEST'}">
 									<a class="btn  btn-sm btn-outline-primary ml-2 mr-2" href="UpdateCategoria?id=${c.getId()}">Edit</a>
 									<c:if test="${ sessionScope.ruolo != 'OPERATORE'}">
-									<a class="btn btn-outline-danger btn-sm" href="ServletCancellaCategoria?id=${c.getId()}">Delete</a>
+									<a class="btn btn-outline-danger btn-sm" href="ServletCancellaCategoria?id=${c.getId()}&
+										lista=${cond}&desc=${cri}">Delete</a>
 									</c:if>
 									</c:if>
 								</td>
 		                    </tr>
-		                    </c:forEach>
+		                    </c:forEach>		                    
 		                </tbody>
 		            </table>
 		        </div>

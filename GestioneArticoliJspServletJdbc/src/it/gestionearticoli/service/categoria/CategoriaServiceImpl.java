@@ -1,7 +1,7 @@
 package it.gestionearticoli.service.categoria;
 
 import java.sql.Connection;
-
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.ArrayList;
 import java.util.List;
 import it.gestionearticoli.connection.MyConnection;
@@ -100,6 +100,8 @@ public class CategoriaServiceImpl implements CategoriaService {
 			// eseguo quello che realmente devo fare
 			result = categoriaDao.delete(input);
 
+		} catch (SQLIntegrityConstraintViolationException e) {
+			throw e;
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw e;

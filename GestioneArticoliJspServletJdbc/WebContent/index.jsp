@@ -44,7 +44,7 @@
 		    </div>
 		    <div class='card-body'>
 		    
-		    <form method="post" action="ServletLoggin" novalidate="novalidate">
+		    <form method="post" action="ServletLoggin" >
 		    	
 		    	<div class="form-row">
 							

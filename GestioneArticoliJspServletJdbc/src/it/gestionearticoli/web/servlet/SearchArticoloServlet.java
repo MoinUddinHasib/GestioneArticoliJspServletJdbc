@@ -58,7 +58,11 @@ public class SearchArticoloServlet extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
+		request.setAttribute("filtro", true);
+		request.setAttribute("co", request.getParameter("codice"));
+		request.setAttribute("de", request.getParameter("descrizione"));
+		request.setAttribute("pr", request.getParameter("prezzo").isEmpty()?0:Integer.parseInt(request.getParameter("prezzo")));
+		request.setAttribute("cat", request.getParameter("categoria"));
 		request.getRequestDispatcher("results.jsp").forward(request, response);
 	}
 

@@ -60,7 +60,11 @@
 		                    </tr>
 		                </thead>
 		                <tbody>
-		                		
+		                	<c:set var ="fil" value="${requestScope.filtro}"/>
+		                	<c:set var ="co" value="${requestScope.co}"/>
+		                	<c:set var ="de" value="${requestScope.de}"/>
+		                	<c:set var ="pr" value="${requestScope.pr}"/>
+		                	<c:set var ="cat" value="${requestScope.cat}"/>
 		                	<c:forEach items="${requestScope.listaArticoliAttribute}" var= 'a'>							
 		                    <tr >
 		                        <td>${a.getId()}</td>
@@ -73,7 +77,8 @@
 									<c:if test="${ sessionScope.ruolo != 'GUEST'}">
 									<a class="btn  btn-sm btn-outline-primary ml-2 mr-2" href="PrepareUpdateArticolo?id=${a.getId()}">Edit</a>
 									<c:if test="${ sessionScope.ruolo != 'OPERATORE'}">
-									<a class="btn btn-outline-danger btn-sm" href="LaservletperrimuovereArticolo?id=${a.getId()}">Delete</a>
+									<a class="btn btn-outline-danger btn-sm" href="LaservletperrimuovereArticolo?id=${a.getId()}&fil=${fil}
+									&co=${co}&de=${de}&pr=${pr}&cat=${cat}">Delete</a>
 									</c:if>
 									</c:if>
 								</td>

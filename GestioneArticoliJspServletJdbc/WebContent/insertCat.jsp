@@ -50,8 +50,7 @@
 					I campi con <span class="text-danger">*</span> sono obbligatori
 				</h6>
 
-				<form method="post" action="InsertCategoriaServlet"
-					novalidate="novalidate">
+				<form method="post" action="InsertCategoriaServlet">
 
 					<div class="form-row">
 

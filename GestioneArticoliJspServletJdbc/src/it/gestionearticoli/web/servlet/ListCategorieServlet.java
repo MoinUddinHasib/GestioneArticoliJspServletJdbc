@@ -36,6 +36,7 @@ public class ListCategorieServlet extends HttpServlet {
 			return;
 		}
 		try {
+			request.setAttribute("filtro", false);
 			request.setAttribute("listaCategorie", MyServiceFactory.getCategoriaServiceInstance().listAll());
 		} catch (Exception e) {
 			e.printStackTrace();

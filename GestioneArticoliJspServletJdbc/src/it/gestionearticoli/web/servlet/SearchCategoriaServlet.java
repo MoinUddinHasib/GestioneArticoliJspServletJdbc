@@ -49,6 +49,8 @@ public class SearchCategoriaServlet extends HttpServlet {
 			response.sendRedirect(request.getContextPath());
 			return;
 		}
+		request.setAttribute("filtro", true);
+		request.setAttribute("criterio", request.getParameter("descrizione"));
 		try {
 			request.setAttribute("listaCategorie", MyServiceFactory.getCategoriaServiceInstance().findByExample(new Categoria(request.getParameter("descrizione"))));
 		} catch (Exception e) {

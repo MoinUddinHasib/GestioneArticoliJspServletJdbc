@@ -37,3 +37,7 @@ CODICE_FISCALE [CHAR(16)]
 PASSWORD [VARCHAR(45)]
 
 RUOLO [ENUM('ADMIN','OPERATORE','GUEST')]
+
+##NOTA:
+-----------------------------------------------------
+Inserire i tre tipi di utenti manualmente da MySQL

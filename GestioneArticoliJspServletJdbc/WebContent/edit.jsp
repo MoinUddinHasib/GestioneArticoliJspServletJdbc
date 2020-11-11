@@ -44,7 +44,7 @@
 		    
 		    <h6 class="card-title">I campi con <span class="text-danger">*</span> sono obbligatori</h6>
 		    
-		    <form method="post" action="ExecuteUpdateArticolo" novalidate="novalidate">
+		    <form method="post" action="ExecuteUpdateArticolo" >
 		    	
 		    	<div class="form-row">
 		    	

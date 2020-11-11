@@ -42,6 +42,11 @@ public class LaservletperrimuovereArticolo extends HttpServlet {
 			return;
 		}
 		request.setAttribute("id", request.getParameter("id"));
+		request.setAttribute("fil", request.getParameter("fil"));
+		request.setAttribute("co", request.getParameter("co"));
+		request.setAttribute("de", request.getParameter("de"));
+		request.setAttribute("pr", request.getParameter("pr"));
+		request.setAttribute("cat", request.getParameter("cat"));
 		request.getRequestDispatcher("conferma.jsp").forward(request, response);
 	}
 

@@ -1,6 +1,7 @@
 package it.gestionearticoli.web.servlet;
 
 import java.io.IOException;
+import java.sql.SQLIntegrityConstraintViolationException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -43,11 +44,17 @@ public class ServletCancellaCategoria extends HttpServlet {
 		}
 		try {
 			Categoria c = MyServiceFactory.getCategoriaServiceInstance().findById(Long.parseLong(request.getParameter("id")));
-			MyServiceFactory.getCategoriaServiceInstance().rimuovi(c);
+			MyServiceFactory.getCategoriaServiceInstance().rimuovi(c);			
+		} catch (SQLIntegrityConstraintViolationException e) {
+			request.setAttribute("errorMessage", "Errore: La categoria contiene articoli");
+			settaLista(request,response);
+			request.getRequestDispatcher("canali.jsp").forward(request, response);
+			return;
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		response.sendRedirect(request.getContextPath()+"/ListCategorieServlet");
+		settaLista(request,response);
+		request.getRequestDispatcher("canali.jsp").forward(request, response);
 	}
 
 	/**
@@ -55,6 +62,24 @@ public class ServletCancellaCategoria extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+	}
+	
+	private void settaLista(HttpServletRequest request, HttpServletResponse response) {
+		if(Boolean.valueOf(request.getParameter("lista").toString())) {
+			try {
+				request.setAttribute("filtro", true);
+				request.setAttribute("criterio", request.getParameter("desc"));
+				request.setAttribute("listaCategorie", MyServiceFactory.getCategoriaServiceInstance().findByExample(new Categoria(request.getParameter("desc"))));
+			} catch (Exception e1) {
+				e1.printStackTrace();
+			}
+		}else {
+			try {
+				request.setAttribute("listaCategorie", MyServiceFactory.getCategoriaServiceInstance().listAll());
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
 	}
 
 }
