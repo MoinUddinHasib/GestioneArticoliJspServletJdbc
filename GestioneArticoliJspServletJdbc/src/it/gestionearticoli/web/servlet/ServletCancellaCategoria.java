@@ -54,6 +54,7 @@ public class ServletCancellaCategoria extends HttpServlet {
 			e.printStackTrace();
 		}
 		settaLista(request,response);
+		request.setAttribute("successMessage", "Operazione effettuata con successo");
 		request.getRequestDispatcher("canali.jsp").forward(request, response);
 	}
 

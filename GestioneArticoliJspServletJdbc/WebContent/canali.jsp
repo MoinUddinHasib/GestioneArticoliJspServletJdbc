@@ -50,8 +50,11 @@
 		    <div class='card-header'>
 		        <h5>Lista delle Categorie</h5> 
 		    </div>
+		    <c:set var ="cond" value="${requestScope.filtro}"/>
+		    <c:set var ="cri" value="${requestScope.criterio}"/>
+		    
 		    <div class='card-body'><c:if test="${ sessionScope.ruolo != 'GUEST'}">
-		    	<a class="btn btn-primary " href="InsertCategoriaServlet">Add New</a>
+		    	<a class="btn btn-primary " href="InsertCategoriaServlet?lista=${cond}&desc=${cri}">Add New</a>
 		    						</c:if>
 		        <div class='table-responsive'>
 		            <table class='table table-striped ' >
@@ -63,8 +66,7 @@
 		                    </tr>
 		                </thead>
 		                <tbody>
-		                	<c:set var ="cond" value="${requestScope.filtro}"/>
-		                	<c:set var ="cri" value="${requestScope.criterio}"/>
+		                	
 		                	<c:forEach items="${requestScope.listaCategorie}" var= 'c'>							
 		                    <tr >
 		                        <td>${c.getId()}</td>
@@ -72,7 +74,8 @@
 		                        <td>
 									<a class="btn  btn-sm btn-outline-secondary" href="ServletFilterArticoli?id=${c.getId()}">Entra</a>
 									<c:if test="${ sessionScope.ruolo != 'GUEST'}">
-									<a class="btn  btn-sm btn-outline-primary ml-2 mr-2" href="UpdateCategoria?id=${c.getId()}">Edit</a>
+									<a class="btn  btn-sm btn-outline-primary ml-2 mr-2" href="UpdateCategoria?id=${c.getId()}&
+										lista=${cond}&desc=${cri}">Edit</a>
 									<c:if test="${ sessionScope.ruolo != 'OPERATORE'}">
 									<a class="btn btn-outline-danger btn-sm" href="ServletCancellaCategoria?id=${c.getId()}&
 										lista=${cond}&desc=${cri}">Delete</a>

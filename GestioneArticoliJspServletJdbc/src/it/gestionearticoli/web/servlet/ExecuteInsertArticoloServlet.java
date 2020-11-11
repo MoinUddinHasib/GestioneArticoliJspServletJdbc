@@ -57,7 +57,7 @@ public class ExecuteInsertArticoloServlet extends HttpServlet {
 					MyServiceFactory.getCategoriaServiceInstance().findById(categoria) : null);
 			
 			MyServiceFactory.getArticoloServiceInstance().inserisciNuovo(articoloInstance);
-			request.setAttribute("listaArticoliAttribute", MyServiceFactory.getArticoloServiceInstance().listAll());
+			settaLista(request, response);
 			request.setAttribute("successMessage", "Operazione effettuata con successo");
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -65,6 +65,36 @@ public class ExecuteInsertArticoloServlet extends HttpServlet {
 
 		//andiamo ai risultati
 		request.getRequestDispatcher("results.jsp").forward(request, response);
+
+	}
+	
+	private void settaLista(HttpServletRequest request, HttpServletResponse response) {
+
+		if (Boolean.valueOf(request.getParameter("fil"))) {
+			try {
+				request.setAttribute("fil", request.getParameter("fil"));
+				request.setAttribute("co", request.getParameter("co"));
+				request.setAttribute("de", request.getParameter("de"));
+				request.setAttribute("pr", request.getParameter("pr"));
+				request.setAttribute("cat", request.getParameter("cat"));
+				request.setAttribute("listaArticoliAttribute",
+						MyServiceFactory.getArticoloServiceInstance()
+								.findByExample(new Articolo(request.getParameter("co").toString(),
+										request.getParameter("de").toString(),
+										request.getParameter("pr").toString().isEmpty() ? 0
+												: Integer.parseInt(request.getParameter("pr").toString()),
+										MyServiceFactory.getCategoriaServiceInstance()
+												.findById(Long.parseLong(request.getParameter("cat").toString())))));
+			} catch (Exception e1) {
+				e1.printStackTrace();
+			}
+		} else {
+			try {
+				request.setAttribute("listaArticoliAttribute", MyServiceFactory.getArticoloServiceInstance().listAll());
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
 
 	}
 

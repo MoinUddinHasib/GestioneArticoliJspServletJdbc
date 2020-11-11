@@ -53,6 +53,12 @@ public class PrepareUpdateArticolo extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		request.setAttribute("fil", request.getParameter("fil"));
+		request.setAttribute("co", request.getParameter("co"));
+		request.setAttribute("de", request.getParameter("de"));
+		request.setAttribute("pr", request.getParameter("pr"));
+		request.setAttribute("cat", request.getParameter("cat"));
+		
 		List<Categoria> a=null;
 		try {
 			a = MyServiceFactory.getCategoriaServiceInstance().listAll();

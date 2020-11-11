@@ -60,6 +60,9 @@
 				</h6>
 
 				<form method="post" action="InsertCategoriaServlet" name="campi" onSubmit="return validaForm();">
+				
+				<input type="hidden" value="${requestScope.filtro}" name="filtro">
+				<input type="hidden" value="${requestScope.criterio}" name="criterio">
 
 					<div class="form-row">
 

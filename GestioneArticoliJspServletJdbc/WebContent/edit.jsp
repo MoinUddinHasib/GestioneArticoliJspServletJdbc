@@ -59,6 +59,11 @@
 		    	
 
 							<input type="hidden" value="${requestScope.id}" name="id">
+							<input type="hidden" value="${requestScope.fil}" name="fil">
+							<input type="hidden" value="${requestScope.co}" name="co">
+							<input type="hidden" value="${requestScope.de}" name="de">
+							<input type="hidden" value="${requestScope.pr}" name="pr">
+							<input type="hidden" value="${requestScope.cat}" name="cat">
 							
 							<div class="form-group col-md-6">
 								<label>Codice <span class="text-danger">*</span></label>

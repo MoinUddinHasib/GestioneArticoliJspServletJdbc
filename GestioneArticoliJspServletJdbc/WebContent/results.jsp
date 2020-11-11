@@ -44,8 +44,14 @@
 		    <div class='card-header'>
 		        <h5>Lista dei risultati</h5> 
 		    </div>
+		    				<c:set var ="fil" value="${requestScope.filtro}"/>
+		                	<c:set var ="co" value="${requestScope.co}"/>
+		                	<c:set var ="de" value="${requestScope.de}"/>
+		                	<c:set var ="pr" value="${requestScope.pr}"/>
+		                	<c:set var ="cat" value="${requestScope.cat}"/>
 		    <div class='card-body'><c:if test="${ sessionScope.ruolo != 'GUEST'}">
-		    	<a class="btn btn-primary " href="PrepareInsertArticoloServlet">Add New</a>
+		    	<a class="btn btn-primary " href="PrepareInsertArticoloServlet?fil=${fil}
+									&co=${co}&de=${de}&pr=${pr}&cat=${cat}">Add New</a>
 		    						</c:if>
 		        <div class='table-responsive'>
 		            <table class='table table-striped ' >
@@ -60,11 +66,7 @@
 		                    </tr>
 		                </thead>
 		                <tbody>
-		                	<c:set var ="fil" value="${requestScope.filtro}"/>
-		                	<c:set var ="co" value="${requestScope.co}"/>
-		                	<c:set var ="de" value="${requestScope.de}"/>
-		                	<c:set var ="pr" value="${requestScope.pr}"/>
-		                	<c:set var ="cat" value="${requestScope.cat}"/>
+		                	
 		                	<c:forEach items="${requestScope.listaArticoliAttribute}" var= 'a'>							
 		                    <tr >
 		                        <td>${a.getId()}</td>
@@ -75,7 +77,8 @@
 		                        <td>
 									<a class="btn  btn-sm btn-outline-secondary" href="LaservletpervisualizzareArticolo?id=${a.getId()}">Visualizza</a>
 									<c:if test="${ sessionScope.ruolo != 'GUEST'}">
-									<a class="btn  btn-sm btn-outline-primary ml-2 mr-2" href="PrepareUpdateArticolo?id=${a.getId()}">Edit</a>
+									<a class="btn  btn-sm btn-outline-primary ml-2 mr-2" href="PrepareUpdateArticolo?id=${a.getId()}&fil=${fil}
+									&co=${co}&de=${de}&pr=${pr}&cat=${cat}">Edit</a>
 									<c:if test="${ sessionScope.ruolo != 'OPERATORE'}">
 									<a class="btn btn-outline-danger btn-sm" href="LaservletperrimuovereArticolo?id=${a.getId()}&fil=${fil}
 									&co=${co}&de=${de}&pr=${pr}&cat=${cat}">Delete</a>

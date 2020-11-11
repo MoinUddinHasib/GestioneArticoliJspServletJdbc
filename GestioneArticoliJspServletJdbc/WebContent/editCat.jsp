@@ -57,6 +57,8 @@
 		    	
 
 							<input type="hidden" value="${requestScope.id}" name="id">
+							<input type="hidden" value="${requestScope.filtro}" name="filtro">
+							<input type="hidden" value="${requestScope.criterio}" name="criterio">
 							
 							<div class="form-group col-md-6">
 								<label>Descrizione <span class="text-danger">*</span></label>

@@ -47,8 +47,8 @@ public class UpdateCategoria extends HttpServlet {
 		} catch (Exception e ) {
 			e.printStackTrace();
 		}
-		
-		
+		request.setAttribute("filtro", request.getParameter("lista"));
+		request.setAttribute("criterio", request.getParameter("desc"));
 		request.getRequestDispatcher("editCat.jsp").forward(request, response);
 	}
 
@@ -71,15 +71,33 @@ public class UpdateCategoria extends HttpServlet {
 		try {
 			c.setId(Long.parseLong(request.getParameter("id")));
 			MyServiceFactory.getCategoriaServiceInstance().aggiorna(c);
-			request.setAttribute("listaCategorie", MyServiceFactory.getCategoriaServiceInstance().listAll());
+			settaLista(request,response);
 			request.setAttribute("successMessage", "Operazione effettuata con successo");
-			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
 		//andiamo ai risultati
 		request.getRequestDispatcher("canali.jsp").forward(request, response);
+	}
+
+	private void settaLista(HttpServletRequest request, HttpServletResponse response) {
+		if(Boolean.valueOf(request.getParameter("filtro").toString())) {
+			try {
+				request.setAttribute("filtro", true);
+				request.setAttribute("criterio", request.getParameter("criterio"));
+				request.setAttribute("listaCategorie", MyServiceFactory.getCategoriaServiceInstance().findByExample(new Categoria(request.getParameter("criterio"))));
+			} catch (Exception e1) {
+				e1.printStackTrace();
+			}
+		}else {
+			try {
+				request.setAttribute("listaCategorie", MyServiceFactory.getCategoriaServiceInstance().listAll());
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		
 	}
 
 }

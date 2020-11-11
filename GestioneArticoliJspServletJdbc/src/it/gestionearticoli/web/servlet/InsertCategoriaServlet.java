@@ -41,6 +41,8 @@ public class InsertCategoriaServlet extends HttpServlet {
 			response.sendRedirect(request.getContextPath()+"/ListCategorieServlet");
 			return;
 		}
+		request.setAttribute("filtro", request.getParameter("lista"));
+		request.setAttribute("criterio", request.getParameter("desc"));
 		request.getRequestDispatcher("insertCat.jsp").forward(request, response);
 	}
 
@@ -60,7 +62,7 @@ public class InsertCategoriaServlet extends HttpServlet {
 				Categoria cat = new Categoria(descrizioneInputParam);
 				try {
 					MyServiceFactory.getCategoriaServiceInstance().inserisciNuovo(cat);
-					request.setAttribute("listaCategorie", MyServiceFactory.getCategoriaServiceInstance().listAll());
+					settaLista(request,response);
 					request.setAttribute("successMessage", "Operazione effettuata con successo");
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -68,6 +70,24 @@ public class InsertCategoriaServlet extends HttpServlet {
 
 				request.getRequestDispatcher("canali.jsp").forward(request, response);
 
+	}
+	
+	private void settaLista(HttpServletRequest request, HttpServletResponse response) {
+		if(Boolean.valueOf(request.getParameter("filtro").toString())) {
+			try {
+				request.setAttribute("filtro", true);
+				request.setAttribute("criterio", request.getParameter("criterio"));
+				request.setAttribute("listaCategorie", MyServiceFactory.getCategoriaServiceInstance().findByExample(new Categoria(request.getParameter("criterio"))));
+			} catch (Exception e1) {
+				e1.printStackTrace();
+			}
+		}else {
+			try {
+				request.setAttribute("listaCategorie", MyServiceFactory.getCategoriaServiceInstance().listAll());
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
 	}
 
 }
