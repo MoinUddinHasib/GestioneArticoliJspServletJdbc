@@ -12,6 +12,16 @@
 		}	
     </style>
     
+    <script type="text/javascript" language="javascript">
+    function validaForm() {
+    	if(isNaN(document.campi.id_user.value)){
+    		alert("Campi non validi");
+    		return false;
+    	}
+    	return true;
+    }
+    </script>
+    
     <title>Sign-in</title>
   </head>
   <body>
@@ -44,7 +54,7 @@
 		    </div>
 		    <div class='card-body'>
 		    
-		    <form method="post" action="ServletLoggin" >
+		    <form method="post" action="ServletLoggin" name="campi" onSubmit="return validaForm();">
 		    	
 		    	<div class="form-row">
 							
