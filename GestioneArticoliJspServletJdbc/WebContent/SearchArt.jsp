@@ -8,6 +8,16 @@
 <!-- style per le pagine diverse dalla index -->
 <link href="./assets/css/global.css" rel="stylesheet">
 
+<script type="text/javascript" language="javascript">
+    function validaForm() {
+    	if(isNaN(document.campi.prezzo.value)){
+    		alert("Campi non validi");
+    		return false;
+    	}
+    	return true;
+    }
+    </script>
+
 </head>
 <body>
 	<jsp:include page="./navbar.jsp" />
@@ -45,7 +55,7 @@
 			</div>
 			<div class='card-body'>
 
-				<form method="post" action="SearchArticoloServlet">
+				<form method="post" action="SearchArticoloServlet" name="campi" onSubmit="return validaForm();">
 					
 					<div class="form-row">
 					

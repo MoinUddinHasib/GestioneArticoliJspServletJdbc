@@ -7,6 +7,15 @@
 	
 	<!-- style per le pagine diverse dalla index -->
     <link href="./assets/css/global.css" rel="stylesheet">
+    <script type="text/javascript" language="javascript">
+    function validaForm() {
+    	if(document.campi.codice.value=="" || document.campi.descrizione.value=="" || document.campi.prezzo.value=="" || isNaN(document.campi.prezzo.value)){
+    		alert("Campi non validi");
+    		return false;
+    	}
+    	return true;
+    }
+    </script>
     
 </head>
 <body>
@@ -44,7 +53,7 @@
 		    
 		    <h6 class="card-title">I campi con <span class="text-danger">*</span> sono obbligatori</h6>
 		    
-		    <form method="post" action="ExecuteUpdateArticolo" >
+		    <form method="post" action="ExecuteUpdateArticolo" name="campi" onSubmit="return validaForm();">
 		    	
 		    	<div class="form-row">
 		    	

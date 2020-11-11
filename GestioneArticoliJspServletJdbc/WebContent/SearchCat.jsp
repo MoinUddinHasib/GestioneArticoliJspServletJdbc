@@ -44,7 +44,7 @@
 			</div>
 			<div class='card-body'>
 
-				<form method="post" action="SearchCategoriaServlet">
+				<form method="post" action="SearchCategoriaServlet" >
 					
 					<div class="form-row">
 

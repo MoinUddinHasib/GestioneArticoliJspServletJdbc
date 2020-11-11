@@ -6,6 +6,15 @@
 
 <!-- style per le pagine diverse dalla index -->
 <link href="./assets/css/global.css" rel="stylesheet">
+<script type="text/javascript" language="javascript">
+    function validaForm() {
+    	if(document.campi.descrizione.value==""){
+    		alert("Campi non validi");
+    		return false;
+    	}
+    	return true;
+    }
+    </script>
 
 </head>
 <body>
@@ -50,7 +59,7 @@
 					I campi con <span class="text-danger">*</span> sono obbligatori
 				</h6>
 
-				<form method="post" action="InsertCategoriaServlet">
+				<form method="post" action="InsertCategoriaServlet" name="campi" onSubmit="return validaForm();">
 
 					<div class="form-row">
 
